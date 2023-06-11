@@ -3,3 +3,10 @@
     margin: 0;
     padding: 0;
 }
+
+#loading{
+    position: absolute;
+    top: 0;
+    right: 0;
+    color: white;
+}
