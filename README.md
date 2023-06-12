@@ -29,4 +29,4 @@ Contributions to this project are welcome.If you have any suggestions,improvemen
 
 ## Contact 
 
-For any inquiries or questions,please react out to [me]("mailto:lunasuthar5221@gmail.com")
+For any inquiries or questions,please react out to [me](mailto:lunasuthar5221@gmail.com)
