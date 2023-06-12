@@ -1,53 +1,57 @@
 
+
+/* Interactive 3D Model Animation */
+
+// Create the scene, camera, and renderer
 const scene = new THREE.Scene();
-const camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
-
+const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
 const renderer = new THREE.WebGLRenderer();
-renderer.setSize( window.innerWidth, window.innerHeight );
-document.body.appendChild( renderer.domElement );
+renderer.setSize(window.innerWidth, window.innerHeight);
+document.body.appendChild(renderer.domElement);
 
-//gltf model loader
-let face=''
+// Add lighting to the scene
+const light = new THREE.AmbientLight(0x404040); // Soft white light
+scene.add(light);
+const pointLight = new THREE.PointLight(0xff0000, 1, 100); // Point light
+pointLight.position.set(10, 10, 10);
+scene.add(pointLight);
 
-const light = new THREE.AmbientLight( 0x404040 ); // soft white light
-scene.add( light );
-const Pointlight = new THREE.PointLight( 0xff0000, 1, 100 );
-Pointlight.position.set( 10, 10, 10 );
-scene.add( Pointlight );
+// Load the 3D model
+let face = '';
 
-//call function
-loadbirds()
+async function loadModel() {
+const loader = new THREE.GLTFLoader();
+const data = await loader.loadAsync('angry_octopus.glb');
 
+// Remove loading text once the model is loaded
+document.getElementById('loading').innerHTML = '';
 
+// Add the model to the scene
+face = data.scene.children[0];
+scene.add(face);
+}
+
+loadModel();
+
+// Set camera position
 camera.position.z = 5;
 
+// Animate the scene
 function animate() {
-	requestAnimationFrame( animate );
-
-	renderer.render( scene, camera );
+requestAnimationFrame(animate);
+renderer.render(scene, camera);
 }
-
 animate();
 
-document.addEventListener('mousemove',onMouseMove)
+// Handle mouse movement
+function onMouseMove(event) {
+const mousePosition = {
+x: (event.clientX / window.innerWidth) * 2 - 1,
+y: -(event.clientY / window.innerHeight) * 2 + 1,
+};
 
-function onMouseMove(event){
-    const mousePosition={
-        x:(event.clientX/window.innerWidth)*2-1,
-        y:-(event.clientY/window.innerHeight)*2+1,
-    };
-
-    face.rotation.x=(-mousePosition.y)+5;
-    face.rotation.z=(mousePosition.x);
+// Rotate the model based on mouse position
+face.rotation.x = -mousePosition.y + 5;
+face.rotation.z = mousePosition.x;
 }
-
-async function loadbirds(){
-    const loader=new THREE.GLTFLoader();
-    const data=await loader.loadAsync('angry_octopus.glb')
-    
-    //Once model loaded remove title
-    document.getElementById('loading').innerHTML=''
-    face=data.scene.children[0]
-    scene.add(face)
-}
-
+document.addEventListener('mousemove', onMouseMove);
