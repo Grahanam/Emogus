@@ -9,6 +9,7 @@ const init = function () {
       textMesh.geometry=new THREE.TextGeometry(displayname,textOptions)
       audio.src = URL.createObjectURL(files[0])
       audio.load()
+      context=new AudioContext();
       // audio.play()
       // playbtn.innerHTML='Pause'
   }
@@ -40,7 +41,7 @@ var
   
 //Music Analysis
 var audio=document.getElementById('audio')
-var context=new AudioContext();
+var context;
 var src=context.createMediaElementSource(audio)
 var analyser = context.createAnalyser();
 src.connect(analyser);
