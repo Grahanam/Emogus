@@ -115,7 +115,7 @@ button.position.x=0
 //Text
 //Song label
 let textMesh,textOptions;
-loader.load('/Roboto.json', function(font) {
+loader.load('/ThreeJs-Examples/Musify/Roboto.json', function(font) {
   textOptions = {
     font: font,
     size: 0.07, // Size of the text
@@ -139,7 +139,7 @@ loader.load('/Roboto.json', function(font) {
   
   })
 //Button label
-loader.load('/Roboto.json', function(font) {
+loader.load('/ThreeJs-Examples/Musify/Roboto.json', function(font) {
 const textoptions = {
   font: font,
   size: 0.1, // Size of the text
