@@ -94,7 +94,7 @@ button.position.x=0
 
 //Text
 // Load the font
-loader.load('/Roboto.json', function(font) {
+loader.load('/ThreeJs-Examples/Musify/Roboto.json', function(font) {
 const textOptions = {
   font: font,
   size: 0.1, // Size of the text
