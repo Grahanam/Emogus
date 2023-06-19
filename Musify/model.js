@@ -4,11 +4,31 @@ const init = function () {
   file.onchange = function () {
       let files = this.files;
       // console.log(files)
+      displayname=files[0].name
+      textMesh.geometry.dispose();
+      textMesh.geometry=new THREE.TextGeometry(displayname,textOptions)
       audio.src = URL.createObjectURL(files[0])
       audio.load()
       audio.play()
+      playbtn.innerHTML='Pause'
   }
 };
+
+
+let displayname=''
+let playbtn=document.getElementById('play')
+
+//Play/Pause Button event listener
+playbtn.addEventListener('click',function(){
+  if(playbtn.innerHTML==='Play'){
+     playbtn.innerHTML='Pause'
+     audio.play()
+  }
+  else{
+    audio.pause()
+    playbtn.innerHTML='Play'
+  }
+})
 
 var		
 	intersects,
@@ -93,9 +113,34 @@ button.position.y=-1.1
 button.position.x=0
 
 //Text
-// Load the font
-loader.load('/ThreeJs-Examples/Musify/Roboto.json', function(font) {
-const textOptions = {
+//Song label
+let textMesh,textOptions;
+loader.load('/Roboto.json', function(font) {
+  textOptions = {
+    font: font,
+    size: 0.07, // Size of the text
+    height: 0.01, // Thickness of the text
+    curveSegments: 12,
+    bevelEnabled: false
+  };
+  
+  const textGeometry = new THREE.TextGeometry(`${displayname}`, textOptions);
+    
+  // Create a material for the text
+  const textMaterial = new THREE.MeshBasicMaterial({ color: 0xffffff });
+  
+  // Create a mesh using the text geometry and material
+  textMesh = new THREE.Mesh(textGeometry, textMaterial);
+  textMesh.position.z=0.25
+  textMesh.position.x=-0.9  
+  textMesh.position.y=-0.1
+  // Add the text mesh to the scene
+  button.add(textMesh);
+  
+  })
+//Button label
+loader.load('/Roboto.json', function(font) {
+const textoptions = {
   font: font,
   size: 0.1, // Size of the text
   height: 0.02, // Thickness of the text
@@ -103,18 +148,18 @@ const textOptions = {
   bevelEnabled: false
 };
 
-const textGeometry = new THREE.TextGeometry('Select Music', textOptions);
+const textGeometry = new THREE.TextGeometry('Select Music', textoptions);
   
 // Create a material for the text
 const textMaterial = new THREE.MeshBasicMaterial({ color: 0xffffff });
 
 // Create a mesh using the text geometry and material
-const textMesh = new THREE.Mesh(textGeometry, textMaterial);
-textMesh.position.z=0.25
-textMesh.position.x=-0.4  
-textMesh.position.y=0.3
+const textmesh = new THREE.Mesh(textGeometry, textMaterial);
+textmesh.position.z=0.25
+textmesh.position.x=-0.4  
+textmesh.position.y=0.3
 // Add the text mesh to the scene
-button.add(textMesh);
+button.add(textmesh);
 
 })
 
@@ -168,7 +213,7 @@ scene.add(mesh)
 const pointLight = new THREE.PointLight(0xFFFFFF, 1, 100000);
 pointLight.position.set(0, 0, 10)
 scene.add(pointLight)
-camera.position.z = 5
+camera.position.z = 6
     
 //AmbientLight
 var ambientLight = new THREE.AmbientLight(0xaaaaaa);
