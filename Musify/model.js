@@ -9,7 +9,19 @@ const init = function () {
       textMesh.geometry=new THREE.TextGeometry(displayname,textOptions)
       audio.src = URL.createObjectURL(files[0])
       audio.load()
-      context=new AudioContext();
+
+      if (!audioContext) {
+        audioContext = new (window.AudioContext || window.webkitAudioContext)();
+        audioAnalyser = audioContext.createAnalyser();
+        audioSource = audioContext.createMediaElementSource(audio);
+        audioSource.connect(audioAnalyser);
+        audioAnalyser.connect(audioContext.destination);
+        audioAnalyser.fftSize = 512;
+        frequencyData = new Uint8Array(audioAnalyser.frequencyBinCount || 125);
+      } else {
+        audioContext.resume();
+      }
+      
       // audio.play()
       // playbtn.innerHTML='Pause'
   }
@@ -41,14 +53,11 @@ var
   
 //Music Analysis
 var audio=document.getElementById('audio')
-var context;
-var src=context.createMediaElementSource(audio)
-var analyser = context.createAnalyser();
-src.connect(analyser);
-analyser.connect(context.destination);
-analyser.fftSize = 512;
-var bufferLength = analyser.frequencyBinCount || 125;
-var frequencyData = new Uint8Array(bufferLength);
+var src
+var analyser
+var bufferLength =125;
+var frequencyData ;
+var averageFrequency;
 
 //Scene,Renderer
 const scene = new THREE.Scene();
@@ -261,30 +270,34 @@ function animate() {
   raycasterCheck=false
   }
   
+  if(frequencyData){
   
-  analyser.getByteFrequencyData(frequencyData);
+    analyser.getByteFrequencyData(frequencyData);
   
-  //bar animation
-  x=0
-  bars.traverse((bar) => {
-  bar.scale.y = frequencyData[x] / 120
-  //rgb color
-  // let r = ((frequencyData[x] + (25 * (x / bufferLength))) / 255)
-  // let g = (250 * (x / bufferLength)) / 255
-  // let b = (50 / 255)
-  // if (bar.material) {
-  //   bar.material.color.setRGB(r, g, b)
-  // }
-  x++
-  })
-  
-  //speaker animation
-  const averageFrequency = getAverageFrequency(frequencyData);
-  const scale = averageFrequency / 350; // Adjust the scaling factor as needed
-  const maxvalue = Math.max(scale, 0.2)
-  speaker1.scale.set(maxvalue, maxvalue, 0.2)
-  speaker2.scale.set(maxvalue, maxvalue, 0.2)
-  control.update()
+    //bar animation
+    x=0
+    bars.traverse((bar) => {
+    bar.scale.y = frequencyData[x] / 120
+    //rgb color
+    // let r = ((frequencyData[x] + (25 * (x / bufferLength))) / 255)
+    // let g = (250 * (x / bufferLength)) / 255
+    // let b = (50 / 255)
+    // if (bar.material) {
+    //   bar.material.color.setRGB(r, g, b)
+    // }
+    x++
+    })
+    //speaker animation
+    const averageFrequency = getAverageFrequency(frequencyData);
+    const scale = averageFrequency / 350; // Adjust the scaling factor as needed
+    const maxvalue = Math.max(scale, 0.2)
+    speaker1.scale.set(maxvalue, maxvalue, 0.2)
+    speaker2.scale.set(maxvalue, maxvalue, 0.2)
+    control.update()
+  }else{
+    speaker1.scale.set(0.2, 0.2, 0.2)
+    speaker2.scale.set(0.2, 0.2, 0.2)
+  } 
   
   renderer.render(scene, camera);
 }
