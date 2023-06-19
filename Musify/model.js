@@ -9,8 +9,8 @@ const init = function () {
       textMesh.geometry=new THREE.TextGeometry(displayname,textOptions)
       audio.src = URL.createObjectURL(files[0])
       audio.load()
-      audio.play()
-      playbtn.innerHTML='Pause'
+      // audio.play()
+      // playbtn.innerHTML='Pause'
   }
 };
 
