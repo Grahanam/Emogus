@@ -11,7 +11,7 @@ const init = function () {
       audio.load()
 
       if (!audioContext) {
-        audioContext = new (window.AudioContext || window.webkitAudioContext)();
+        audioContext = new AudioContext();
         audioAnalyser = audioContext.createAnalyser();
         audioSource = audioContext.createMediaElementSource(audio);
         audioSource.connect(audioAnalyser);
