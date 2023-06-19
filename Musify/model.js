@@ -6,7 +6,7 @@ const init = function () {
       // console.log(files)
       audio.src = URL.createObjectURL(files[0])
       audio.load()
-      // audio.play()
+      audio.play()
   }
 };
 
