@@ -2,8 +2,8 @@
 
 This repository contains a collection of examples showcasing the capabilities of Three.js, a popular JavaScript library for creating 3D graphics in the browser. Each example is designed to demonstrate a specific feature or technique using Three.js.
 
-Live Demo : [Emogus](https://grahanam.github.io/ThreeJs-Examples/Emogus/index.html)
-Live Demo : [Musify](https://grahanam.github.io/ThreeJs-Examples/Musify/index.html)
+- Live Demo : [Emogus](https://grahanam.github.io/ThreeJs-Examples/Emogus/index.html)
+- Live Demo : [Musify](https://grahanam.github.io/ThreeJs-Examples/Musify/index.html)
 
 ## Getting Started
 

@@ -4,14 +4,6 @@ This repository contains code for creating an interactive 3D model animation usi
 
 Live Demo : [Emogus](https://grahanam.github.io/ThreeJs-Examples/Emogus/index.html)
 
-## Getting Started
-
-Follow these steps to get started with the project:
-
-- Clone this respository to your local machine.
-- Open the project directory in a code editor of your choice.
-- Serve the project directory using a local development server or by opening the 'index.html' file directly in a web browser.
-- Interact with the 3D model using mouse movements to see the rotation effect.
 
 ## Dependencies 
 
