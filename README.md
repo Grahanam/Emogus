@@ -2,7 +2,7 @@
 
 This repository contains code for creating an interactive 3D model animation using Three.js. The animation allows users to control the rotation of a 3D model using mouse movements.
 
-Live Demo : [Emogus](https://grahanam.github.io/ThreeJs-Examples/Emogus/index.html)
+Live Demo : [Emogus](https://grahanam.github.io/Emogus/src/index.html)
 
 ## Getting Started
 
@@ -19,6 +19,9 @@ This project relies on the following libraries:
 
 - Three.js: A JavaScript library for creating 3D graphics in the browser.
 
+## Contributions
+
+Contributions to this project are welcome.If you have any suggestions,improvements,or bug fixes,feel free to create a pull request.
 
 ## Acknowledgement
 
@@ -26,3 +29,8 @@ This project relies on the following libraries:
 
 - Special thanks to [guihim](https://sketchfab.com/guihim) for creating awesome 3D model [angry_octopus](https://sketchfab.com/3d-models/angry-octopus-82696447156d4e068edd5c9a2bb6d49a) used in this project.
 
+## Contact 
+
+For any inquiries or questions,please react out: 
+- [Gmail](mailto:lunasuthar5221@gmail.com)
+- [Linkedin](https://www.linkedin.com/in/lunaramsuthar/)

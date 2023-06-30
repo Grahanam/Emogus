@@ -17,7 +17,8 @@ const init = function () {
         audioSource.connect(audioAnalyser);
         audioAnalyser.connect(audioContext.destination);
         audioAnalyser.fftSize = 512;
-        frequencyData = new Uint8Array(audioAnalyser.frequencyBinCount || 125);
+        bufferLength = audioAnalyser.frequencyBinCount || 125;
+        frequencyData = new Uint8Array(bufferLength);
       } else {
         audioContext.resume();
       }
@@ -26,7 +27,6 @@ const init = function () {
       // playbtn.innerHTML='Pause'
   }
 };
-
 
 let displayname=''
 let playbtn=document.getElementById('play')
@@ -272,7 +272,7 @@ function animate() {
   
   if(frequencyData){
   
-    analyser.getByteFrequencyData(frequencyData);
+    audioAnalyser.getByteFrequencyData(frequencyData);
   
     //bar animation
     x=0
