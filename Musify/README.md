@@ -1,8 +1,8 @@
-# Interative 3D Model Animation
+# 3D Speaker Model
 
 This repository contains code for creating an interactive 3D model animation using Three.js. The animation allows users to control the rotation of a 3D model using mouse movements.
 
-Live Demo : [Emogus](https://grahanam.github.io/ThreeJs-Examples/Emogus/index.html)
+Live Demo : [Musify](https://grahanam.github.io/ThreeJs-Examples/Emogus/index.html)
 
 ## Getting Started
 

@@ -1,3 +1,10 @@
+var audioContext
+var src
+var analyser
+var bufferLength =125;
+var frequencyData ;
+var averageFrequency;
+
 const init = function () {
   let file = document.getElementById('file')
   let audio = document.getElementById('audio')
@@ -53,11 +60,7 @@ var
   
 //Music Analysis
 var audio=document.getElementById('audio')
-var src
-var analyser
-var bufferLength =125;
-var frequencyData ;
-var averageFrequency;
+
 
 //Scene,Renderer
 const scene = new THREE.Scene();
